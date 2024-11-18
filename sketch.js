@@ -73,6 +73,8 @@ function setup() {
   centerCanvas();
   background(255);
 
+   // Unlock audio context on user interaction
+  userStartAudio();
 
   shapie = new Shapie(TRIANGLE_FAN, 145, 150);
 
@@ -105,8 +107,8 @@ function draw() {
 // ------------------------------------------------------------------------------------
 
 function centerCanvas() {
-  var x = (windowWidth - width) / 2;
-  var y = (windowHeight - height) / 2;
+  let x = (windowWidth - width) / 2;
+  let y = (windowHeight - height) / 2;
   cnv.position(x, y);
 }
 
@@ -115,6 +117,12 @@ function windowResized() {
 }
 
 // ------------------------------------------------------------------------------------
+
+// Unlock audio on first touch/click
+function touchStarted() {
+  getAudioContext().resume();
+}
+
 
 var Shapie = function(kind, mx, my) {
 
